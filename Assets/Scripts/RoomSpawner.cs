@@ -1,38 +1,44 @@
 using UnityEngine;
-using System.Collections;
 
 public class RoomSpawner : MonoBehaviour
 {
     [SerializeField] private int doorsDirection;
     [SerializeField] private RoomsType roomsType;
     [SerializeField] private bool isSpawned = false;
+
     private void Start()
     {
         roomsType = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomsType>();
-        Invoke("Spawn", 1f);
+        Invoke("Spawn", 0.2f);
     }
 
     private void Spawn()
     {
         if (isSpawned == false)
         {
-            if (doorsDirection == 1) //leve mistnosti
+            if (doorsDirection == 1) // Left room
             {
                 var rand = Random.Range(0, roomsType.leftRooms.Length);
-                Instantiate(roomsType.leftRooms[rand], transform.position, roomsType.leftRooms[rand].transform.rotation);
+                var room = Instantiate(roomsType.leftRooms[rand], transform.position, roomsType.leftRooms[rand].transform.rotation);
+                roomsType.rooms.Add(room);
             }
-            else if (doorsDirection == 2) //prave mistnosti
+            else if (doorsDirection == 2) // Right room
             {
-                var rand = Random. Range(0, roomsType.rightRooms.Length);
-                Instantiate(roomsType.rightRooms[rand], transform.position, roomsType.rightRooms[rand].transform.rotation);
+                var rand = Random.Range(0, roomsType.rightRooms.Length);
+                var room = Instantiate(roomsType.rightRooms[rand], transform.position, roomsType.rightRooms[rand].transform.rotation);
+                roomsType.rooms.Add(room);
             }
-            else if (doorsDirection == 3) //vrchni mistnosti
+            else if (doorsDirection == 3) // Top room
             {
-            
+                var rand = Random.Range(0, roomsType.topRooms.Length);
+                var room = Instantiate(roomsType.topRooms[rand], transform.position, roomsType.topRooms[rand].transform.rotation);
+                roomsType.rooms.Add(room);
             }
-            else if (doorsDirection == 4) //spodni mistnosti
+            else if (doorsDirection == 4) // Bottom room
             {
-            
+                var rand = Random.Range(0, roomsType.bottomRooms.Length);
+                var room = Instantiate(roomsType.bottomRooms[rand], transform.position, roomsType.bottomRooms[rand].transform.rotation);
+                roomsType.rooms.Add(room);
             }
             isSpawned = true;
         }
@@ -40,9 +46,10 @@ public class RoomSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(("Spawnpoint")) && other.GetComponent<RoomSpawner>().isSpawned == true)
+        if (other.CompareTag("Spawnpoint"))
         {
             Destroy(gameObject);
+            isSpawned = false;
         }
     }
 }
