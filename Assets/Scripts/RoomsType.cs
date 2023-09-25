@@ -27,8 +27,8 @@ public class RoomsType : MonoBehaviour
         {
             if (i == rooms.Count-1 && waitTime <= 0f)
             {
-                Instantiate(bossRoomIndicator, rooms[i].transform.position, rooms[i].transform.rotation);
-                Debug.Log(("Boss has been spawned!"));
+                //Instantiate(bossRoomIndicator, rooms[i].transform.position, rooms[i].transform.rotation);
+                //Debug.Log(("Boss has been spawned!"));
             }
         }
     }
