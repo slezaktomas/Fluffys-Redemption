@@ -164,6 +164,7 @@ Transform:
   - {fileID: 5100262486292447856}
   - {fileID: 6319700370063494122}
   - {fileID: 4801336597001710762}
+  - {fileID: 8222064067105327326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7009459929076721719
@@ -223,9 +224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39618bf26a0d49d095c3ced68cc4fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doors: {fileID: 2889351098369364285}
+  doors:
+  - {fileID: 2889351098369364285}
   enemyPrefab: {fileID: 8347606693995481356, guid: e2db9da7981c74511ae4ee173ad6c444, type: 3}
   spawnArea: {fileID: 7009459929076721719}
+  enemyContainer: {fileID: 2753211374584169934}
   enemies: []
 --- !u!1 &1001533906427694586
 GameObject:
@@ -514,6 +517,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &2753211374584169934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8222064067105327326}
+  m_Layer: 0
+  m_Name: EnemyContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8222064067105327326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753211374584169934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 961183982111843367}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2889351098369364285
 GameObject:
   m_ObjectHideFlags: 0

@@ -332,7 +332,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c85cfc296b2124316851bfcfb0035526, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -353,7 +353,7 @@ Transform:
   m_GameObject: {fileID: 961351659}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -8.11, y: 0.8, z: 0}
   m_LocalScale: {x: 0.047343764, y: 0.047343764, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -474,9 +474,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea457e20a59d04921925b1b418aead86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeBtwAttack: 0.3
+  timeBtwAttack: 0
+  startTimeBtwAttack: 0
   attackPos: {fileID: 1161337208}
-  whatIsEnemies:
+  EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 256
   attackRange: 0.71
@@ -730,6 +731,10 @@ PrefabInstance:
     - target: {fileID: 6417429102578011852, guid: 30b9aa658d7f34c1098ecaeab7697f7d, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6417429102578011852, guid: 30b9aa658d7f34c1098ecaeab7697f7d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6417429102578011852, guid: 30b9aa658d7f34c1098ecaeab7697f7d, type: 3}
       propertyPath: m_LocalPosition.x
