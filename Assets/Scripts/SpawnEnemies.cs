@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> doors;
+    public List<GameObject> doors;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private BoxCollider2D spawnArea;
     [SerializeField] private GameObject enemyContainer; 
@@ -25,7 +25,7 @@ public class SpawnEnemies : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasSpawnedEnemies)
         {
-            Invoke("CloseDoors", 2f);
+            Invoke("CloseDoors", 0.1f);
         }
     }
 

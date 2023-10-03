@@ -315,6 +315,8 @@ MonoBehaviour:
   bottomRooms:
   - {fileID: 9211103301514665299, guid: 7ddb90c7e8b1243edb38f8e48cc6e3c6, type: 3}
   closedRoom: {fileID: 0}
+  rooms: []
+  bossRoomIndicator: {fileID: 0}
 --- !u!4 &1861392264
 Transform:
   m_ObjectHideFlags: 0

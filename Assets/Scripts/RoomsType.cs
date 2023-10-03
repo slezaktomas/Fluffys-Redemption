@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class RoomsType : MonoBehaviour
@@ -9,27 +10,35 @@ public class RoomsType : MonoBehaviour
     public GameObject[] leftRooms;
     public GameObject[] topRooms;
     public GameObject[] bottomRooms;
-
-    public GameObject closedRoom;
     public List<GameObject> rooms;
-    public GameObject bossRoomIndicator;
+    public GameObject Boss;
     private float waitTime = 2f;
+    private bool spawnedBoss;
 
     private void Update()
     {
-        SpawnBoss();
-    }
-
-    void SpawnBoss()
-    {
-        waitTime -= 0.5f;
-        for (int i = 0; i < rooms.Count; i++)
+        if (waitTime <= 0)
         {
-            if (i == rooms.Count-1 && waitTime <= 0f)
+            for (int i = 0; i < rooms.Count; i++)
             {
-                //Instantiate(bossRoomIndicator, rooms[i].transform.position, rooms[i].transform.rotation);
-                //Debug.Log(("Boss has been spawned!"));
+                if (i == rooms.Count-1 && spawnedBoss == false)
+                {
+                    //ßif()
+                    //Instantiate(Boss, rooms[i].transform.position, quaternion.identity);
+                    SpawnEnemies spawnEnemies = rooms[i].GetComponent<SpawnEnemies>();
+                    rooms[i].AddComponent<SpawnBoss>();
+                    SpawnBoss spawnBoss = rooms[i].GetComponent<SpawnBoss>();
+                    spawnBoss.doors = spawnEnemies.doors;
+                    Destroy(spawnEnemies);
+                    rooms[i].name = "BossRoom";
+                    spawnedBoss = true;
+                    Debug.Log(("Boss has been spawned!"));
+                }
             }
+        }
+        else
+        {
+            waitTime -= Time.deltaTime;
         }
     }
 }
