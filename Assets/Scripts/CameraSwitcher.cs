@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Unity.VisualScripting;
 
 
 public class CameraSwitcher : MonoBehaviour
@@ -10,14 +11,18 @@ public class CameraSwitcher : MonoBehaviour
     public GameObject room;
     public CinemachineVirtualCamera vcam;
     public bool isActive;
-  
-
+    [SerializeField] private GameObject roomMinimap;
+    
     private void OnTriggerEnter2D(Collider2D other) // Metoda pro trigger.
     {
         if(other.CompareTag("Player") && !other.isTrigger) // Pokud vejdeme s postavou s tagem player do box collideru a je�t� se nespustil trigger, tak se hodnota isActive nastav� na true 
         {
             isActive = true;
-
+            if (roomMinimap != null)
+            {
+                SpriteRenderer color = roomMinimap.GetComponent<SpriteRenderer>();
+                color.color = new Color(255,90,0, 100);
+            }
         }
             
     }

@@ -10,7 +10,6 @@ public class SpawnEnemies : MonoBehaviour
     [SerializeField] private BoxCollider2D spawnArea;
     [SerializeField] private GameObject enemyContainer; 
     public List<GameObject> enemies = new List<GameObject>();
-
     private bool hasSpawnedEnemies = false;
 
     private void Update()
@@ -23,9 +22,12 @@ public class SpawnEnemies : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !hasSpawnedEnemies)
+        if (other.CompareTag("Player"))
         {
-            Invoke("CloseDoors", 0.1f);
+            if (!hasSpawnedEnemies)
+            {
+                //Invoke("CloseDoors", 0.1f);
+            }
         }
     }
 
