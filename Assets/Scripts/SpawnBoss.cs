@@ -6,8 +6,8 @@ using UnityEngine;
 public class SpawnBoss : MonoBehaviour
 {
     public List<GameObject> doors;
-    [SerializeField] private GameObject bossPrefab;
     private bool hasSpawnedBoss = false;
+    public static bool hasDefeatedBoss = false;
 
     private void Start()
     {
@@ -16,8 +16,10 @@ public class SpawnBoss : MonoBehaviour
 
     private void Update()
     {
-        if (hasSpawnedBoss)
+        if (hasDefeatedBoss)
         {
+            UIManager.Instance.bossHealthBar?.SetActive(false);
+            UIManager.Instance.easeHealthBar?.SetActive(false);
             Invoke("OpenDoors", 1);
         }
     }
@@ -26,6 +28,8 @@ public class SpawnBoss : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasSpawnedBoss)
         {
+            UIManager.Instance.bossHealthBar?.SetActive(true);
+            UIManager.Instance.easeHealthBar?.SetActive(true);
             Invoke("CloseDoors", 0.1f);
         }
     }
@@ -34,7 +38,7 @@ public class SpawnBoss : MonoBehaviour
     {
         hasSpawnedBoss = true;
         Debug.Log("Boss has been spawned");
-        GameObject boss = Instantiate(bossPrefab, gameObject.transform.position, Quaternion.identity);
+        //GameObject boss = Instantiate(bossPrefab, gameObject.transform.position, Quaternion.identity);
     }
 
     void CloseDoors()

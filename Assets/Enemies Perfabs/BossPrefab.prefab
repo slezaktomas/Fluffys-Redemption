@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8981654793545294220}
   - component: {fileID: 2128123314478338821}
   - component: {fileID: 4629313865408316964}
-  - component: {fileID: -368800934040424046}
+  - component: {fileID: 3186983838673727959}
   m_Layer: 8
-  m_Name: Boss
+  m_Name: BossPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-368800934040424046
+--- !u!114 &3186983838673727959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8807152544185404265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235272c1bf0a14179ab1865ab8f916b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 17ffe8c1342424e03a206536d6d60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 3
+  healthBar: {fileID: 99385086283270507, guid: 3127703737b21404ba41101608cd7628, type: 3}
   Damage: 3
-  spawnEnemies: {fileID: 0}

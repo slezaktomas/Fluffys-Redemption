@@ -23,8 +23,7 @@ public class RoomsType : MonoBehaviour
             {
                 if (i == rooms.Count-1 && spawnedBoss == false)
                 {
-                    //ßif()
-                    //Instantiate(Boss, rooms[i].transform.position, quaternion.identity);
+                    Instantiate(Boss, rooms[i].transform.position, quaternion.identity);
                     SpawnEnemies spawnEnemies = rooms[i].GetComponent<SpawnEnemies>();
                     rooms[i].AddComponent<SpawnBoss>();
                     SpawnBoss spawnBoss = rooms[i].GetComponent<SpawnBoss>();

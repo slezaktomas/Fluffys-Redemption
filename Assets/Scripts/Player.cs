@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float Hp;
-    [SerializeField] private float Damage;
+    public static float Damage = 1f;
     [SerializeField] private GameObject DamageArea;
     private static Player instance;
     private Player() { }

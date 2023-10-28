@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 647787d5adbe84acd8b61909472c3b0d
+guid: 0ec659e677fd6489791296c940bfd643
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - bossHealthBar: {fileID: 1736826614351045412, guid: 3127703737b21404ba41101608cd7628, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

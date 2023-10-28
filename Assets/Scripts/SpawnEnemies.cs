@@ -26,7 +26,7 @@ public class SpawnEnemies : MonoBehaviour
         {
             if (!hasSpawnedEnemies)
             {
-                //Invoke("CloseDoors", 0.1f);
+                Invoke("CloseDoors", 0.1f);
             }
         }
     }
@@ -37,7 +37,7 @@ public class SpawnEnemies : MonoBehaviour
         Debug.Log("Spawn enemies");
         Vector3 minBounds = spawnArea.bounds.min;
         Vector3 maxBounds = spawnArea.bounds.max;
-        int enemyCount = UnityEngine.Random.Range(4, 8);
+        int enemyCount = UnityEngine.Random.Range(1, 1);
 
         for (int i = 0; i < enemyCount; i++)
         {
