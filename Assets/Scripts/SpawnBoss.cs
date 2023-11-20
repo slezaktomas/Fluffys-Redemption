@@ -37,7 +37,6 @@ public class SpawnBoss : MonoBehaviour
     void Spawn()
     {
         hasSpawnedBoss = true;
-        Debug.Log("Boss has been spawned");
         //GameObject boss = Instantiate(bossPrefab, gameObject.transform.position, Quaternion.identity);
     }
 

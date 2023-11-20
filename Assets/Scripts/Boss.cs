@@ -10,11 +10,13 @@ public class Boss : MonoBehaviour
     [SerializeField] private float Damage;
     private Image healthBar;
     private Image easeBar;
+    private GameObject portal;
     private float timer = 0.5f;
     private void Start()
     {
         healthBar = UIManager.Instance.bossHealthBar?.GetComponent<Image>();
         easeBar = UIManager.Instance.easeHealthBar?.GetComponent<Image>();
+        portal = UIManager.Instance.portal?.GetComponent<GameObject>();
     }
 
     private void Update()
@@ -23,6 +25,8 @@ public class Boss : MonoBehaviour
         {
             Destroy(gameObject);
             SpawnBoss.hasDefeatedBoss = true;
+            Debug.Log("Boss has been defeated!");
+            portal.SetActive(true);
         }
 
         timer -= Time.deltaTime;

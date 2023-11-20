@@ -13,7 +13,7 @@ public class RoomsType : MonoBehaviour
     public List<GameObject> rooms;
     public GameObject Boss;
     private float waitTime = 2f;
-    private bool spawnedBoss;
+    public bool spawnedBoss;
 
     private void Update()
     {
@@ -31,7 +31,6 @@ public class RoomsType : MonoBehaviour
                     Destroy(spawnEnemies);
                     rooms[i].name = "BossRoom";
                     spawnedBoss = true;
-                    Debug.Log(("Boss has been spawned!"));
                 }
             }
         }

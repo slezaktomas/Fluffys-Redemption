@@ -50,7 +50,6 @@ public class LoadingManager : MonoBehaviour
         }
         
         loadingPanel.SetActive(false);
-        Debug.Log((elapsedLoadTime));
         isLoading = false;
     }
 
