@@ -16,7 +16,6 @@ public class Boss : MonoBehaviour
     {
         healthBar = UIManager.Instance.bossHealthBar?.GetComponent<Image>();
         easeBar = UIManager.Instance.easeHealthBar?.GetComponent<Image>();
-        portal = UIManager.Instance.portal?.GetComponent<GameObject>();
     }
 
     private void Update()
@@ -26,7 +25,6 @@ public class Boss : MonoBehaviour
             Destroy(gameObject);
             SpawnBoss.hasDefeatedBoss = true;
             Debug.Log("Boss has been defeated!");
-            portal.SetActive(true);
         }
 
         timer -= Time.deltaTime;

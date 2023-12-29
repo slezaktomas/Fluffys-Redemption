@@ -4,49 +4,61 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    public Rigidbody rb;
+
+    private Vector2 moveInput;
+    private Animator anim;
     public int moveSpeed;
     public int dashValue;
     int activeSpeed;
 
     Vector2 moveDirection;
-
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
+    }
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         activeSpeed = moveSpeed;
     }
     void Update()
     {
         Inputs();
+        Animate();
     }
 
     void FixedUpdate()
     {
         Move();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        /*{
             Dash();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             activeSpeed = moveSpeed;
-        }
+        }*/
     }
 
     void Inputs()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        moveInput.x = Input.GetAxisRaw("Horizontal");
+        moveInput.y= Input.GetAxisRaw("Vertical");
 
-        moveDirection = new Vector2(moveX, moveY).normalized;
+        moveInput.Normalize();
     }
     void Move()
     {
-        rb.velocity = new Vector2(moveDirection.x * activeSpeed, moveDirection.y * activeSpeed);
+        rb.velocity = new Vector3(moveInput.x * activeSpeed, rb.velocity.y, moveInput.y * activeSpeed);
     }
-    void Dash()
+    /*void Dash()
     {
         rb.velocity = new Vector2(moveDirection.x * activeSpeed, moveDirection.y * activeSpeed)*dashValue;
+    }*/
+
+    private void Animate(){
+        anim.SetFloat("MovementX", moveInput.x);
+        anim.SetFloat("MovementY", moveInput.y);
+        anim.SetFloat("Speed", moveInput.sqrMagnitude);
     }
 }

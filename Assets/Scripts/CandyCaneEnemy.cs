@@ -1,22 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CandyCaneEnemy : MonoBehaviour
 {
-    private Transform target; // Transformace hráče
-    [SerializeField] private float moveSpeed = 3.0f; // Rychlost pohybu
-    [SerializeField] private float dashRange = 5.0f; // Vzdálenost, ve které začne nepřítel útočit
-    [SerializeField] private float dashSpeed = 6.0f; // Rychlost bleskového útoku
-    [SerializeField] private float dashCooldown = 2.0f; // Doba mezi bleskovými útoky
-    [SerializeField] private float dashPauseTime = 1.0f; // Doba pozastavení po bleskovém útoku
-
-    private bool isDashing = false; // Indikuje, zda nepřítel právě provádí bleskový útok
-    private float dashCooldownTimer = 0.0f; // Časovač pro bleskový útok
+    private Transform target;
+    public Rigidbody rb;
+    [SerializeField] private float moveSpeed = 3.0f;
 
     private void Start()
     {
-        // Najde transformaci hráče na základě značky "Player".
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -24,58 +16,47 @@ public class CandyCaneEnemy : MonoBehaviour
     {
         if (target == null)
         {
-            // Hráč nebyl nalezen; sem můžete přidat potřebnou obsluhu.
             return;
         }
 
-        // Spočítá směr, kterým se bude pohybovat směrem k hráči.
+        // Continuously move towards the player
+        MoveTowardsPlayer();
+    }
+
+    private void MoveTowardsPlayer()
+    {
         Vector3 direction = target.position - transform.position;
         direction.Normalize();
 
-        float distanceToPlayer = Vector3.Distance(transform.position, target.position);
+        // Move towards the player using Rigidbody.
+        rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.z * moveSpeed);
+    }
 
-        if (distanceToPlayer <= dashRange && !isDashing && dashCooldownTimer <= 0)
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if the enemy collides with the player
+        if (other.CompareTag("Player"))
         {
-            // Zahájí bleskový útok směrem k hráči.
-            StartDashTowardsPlayer(direction);
+            // Deal damage to the player
+            DealDamageToPlayer();
         }
-        else
-        {
-            // Pohybuje se běžnou rychlostí.
-            transform.Translate(direction * moveSpeed * Time.deltaTime);
+    }
 
-            if (dashCooldownTimer > 0)
+    private void DealDamageToPlayer()
+    {
+        // Find the player object and access the HurtPlayer script
+        GameObject heartObject = GameObject.FindGameObjectWithTag("Hearts");
+        if (heartObject != null)
+        {
+            HurtPlayer hurtPlayerScript = heartObject.GetComponent<HurtPlayer>();
+
+            // Check if the HurtPlayer script is found
+            if (hurtPlayerScript != null)
             {
-                dashCooldownTimer -= Time.deltaTime;
+                Debug.Log("Dealing damage to player");
+                // Call the method to hurt the player
+                hurtPlayerScript.Hurt();
             }
         }
-    }
-
-    private void StartDashTowardsPlayer(Vector3 direction)
-    {
-        if (!isDashing)
-        {
-            isDashing = true;
-            StartCoroutine(DashTowardsPlayer(direction));
-        }
-    }
-
-    private IEnumerator DashTowardsPlayer(Vector3 direction)
-    {
-        float dashDistance = 2.0f;
-        float distance = 0;
-
-        while (distance < dashDistance)
-        {
-            transform.Translate(direction * dashSpeed * Time.deltaTime);
-            distance += dashSpeed * Time.deltaTime;
-            yield return null;
-        }
-
-        // Pozastavení na zadanou dobu po bleskovém útoku.
-        yield return new WaitForSeconds(dashPauseTime);
-
-        isDashing = false;
-        dashCooldownTimer = dashCooldown;
     }
 }

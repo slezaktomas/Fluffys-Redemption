@@ -7,13 +7,10 @@ public class MinimapController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Room")) // Přizpůsobte tagy místností podle vašeho projektu
+        if (other.CompareTag("Room"))
         {
-            // Získejte pozici místnosti a umístěte ikonku na minimapu
             Vector3 roomPosition = other.transform.position;
-            // Nastavte pozici ikonky na minimapě na roomPosition
 
-            // Změňte barvu ikonky na žlutou
             SpriteRenderer iconRenderer = GetComponent<SpriteRenderer>();
             iconRenderer.sprite = yellowIcon;
         }

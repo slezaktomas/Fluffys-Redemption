@@ -9,6 +9,7 @@ TagManager:
   - Room
   - Enemy
   - MinimapCamera
+  - Weapon
   layers:
   - Default
   - TransparentFX

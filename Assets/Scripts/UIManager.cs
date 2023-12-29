@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
 {
      public GameObject bossHealthBar;
      public GameObject easeHealthBar;
-     public GameObject portal;
      [SerializeField] private GameObject playerUi;
      public static UIManager Instance { get; private set; }
      private void Awake() 

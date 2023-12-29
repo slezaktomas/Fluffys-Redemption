@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
-    [SerializeField] private int doorsDirection;
+    public int doorsDirection;
     [SerializeField] private RoomsType roomsType;
     [SerializeField] private bool isSpawned = false;
 
@@ -12,7 +12,7 @@ public class RoomSpawner : MonoBehaviour
         Invoke("Spawn",0.1f);
     }
 
-    private void Spawn()
+    public void Spawn()
     {
         if (isSpawned == false)
         {
@@ -44,7 +44,7 @@ public class RoomSpawner : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Spawnpoint"))
         {

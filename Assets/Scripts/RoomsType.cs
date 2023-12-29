@@ -27,7 +27,7 @@ public class RoomsType : MonoBehaviour
                     SpawnEnemies spawnEnemies = rooms[i].GetComponent<SpawnEnemies>();
                     rooms[i].AddComponent<SpawnBoss>();
                     SpawnBoss spawnBoss = rooms[i].GetComponent<SpawnBoss>();
-                    spawnBoss.doors = spawnEnemies.doors;
+                    //spawnBoss.doors = spawnEnemies.doors;
                     Destroy(spawnEnemies);
                     rooms[i].name = "BossRoom";
                     spawnedBoss = true;

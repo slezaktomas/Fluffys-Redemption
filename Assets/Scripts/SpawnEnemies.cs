@@ -7,7 +7,7 @@ public class SpawnEnemies : MonoBehaviour
 {
     public List<GameObject> doors;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private BoxCollider2D spawnArea;
+    [SerializeField] private BoxCollider spawnArea;
     [SerializeField] private GameObject enemyContainer; 
     public List<GameObject> enemies = new List<GameObject>();
     private bool hasSpawnedEnemies = false;
@@ -20,7 +20,7 @@ public class SpawnEnemies : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -42,8 +42,8 @@ public class SpawnEnemies : MonoBehaviour
         for (int i = 0; i < enemyCount; i++)
         {
             float randomX = UnityEngine.Random.Range(minBounds.x, maxBounds.x);
-            float randomY = UnityEngine.Random.Range(minBounds.y, maxBounds.y);
-            Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
+            float randomZ = UnityEngine.Random.Range(minBounds.z, maxBounds.z);
+            Vector3 randomPosition = new Vector3(randomX, 0f, randomZ);
             GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity, enemyContainer.transform);
             enemies.Add(enemy);
         }

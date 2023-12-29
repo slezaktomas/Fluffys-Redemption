@@ -13,7 +13,7 @@ public class CameraSwitcher : MonoBehaviour
     public bool isActive;
     [SerializeField] private GameObject roomMinimap;
     
-    private void OnTriggerEnter2D(Collider2D other) // Metoda pro trigger.
+    private void OnTriggerEnter(Collider other) // Metoda pro trigger.
     {
         if(other.CompareTag("Player") && !other.isTrigger) // Pokud vejdeme s postavou s tagem player do box collideru a je�t� se nespustil trigger, tak se hodnota isActive nastav� na true 
         {
@@ -26,7 +26,7 @@ public class CameraSwitcher : MonoBehaviour
         }
             
     }
-    private void OnTriggerExit2D(Collider2D other) // metoda pro trigger
+    private void OnTriggerExit(Collider other) // metoda pro trigger
     {
         if (other.CompareTag("Player")) // Pokud vejdeme s postavou s tagem player do box collideru
         {
