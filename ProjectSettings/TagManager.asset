@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - MinimapCamera
   - Weapon
+  - Hearts
+  - BulletZone
   layers:
   - Default
   - TransparentFX

@@ -263,7 +263,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4535502115567554342}
   - component: {fileID: 8416926300386194091}
-  - component: {fileID: 1027945652315715670}
   m_Layer: 8
   m_Name: CandyCane (1)
   m_TagString: Enemy
@@ -339,27 +338,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1027945652315715670
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6615340334153093467}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6f903592237da462caadd4b17e798ebe, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8347606693995481356
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +348,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6635118944131488675}
   - component: {fileID: 6097259316904673063}
-  - component: {fileID: 5729427740897065308}
   - component: {fileID: 5257369765054943688}
   - component: {fileID: 4494120731652174496}
   - component: {fileID: 8391506328953425629}
@@ -424,27 +401,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &5729427740897065308
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8347606693995481356}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 11.751459, y: 22.227526, z: 6.8029203}
-  m_Center: {x: -1.3872886, y: -0.022093764, z: -2.9014566}
 --- !u!114 &5257369765054943688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,9 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6097259316904673063}
   moveSpeed: 1
-  chargeDuration: 2
-  dashSpeed: 10
-  dashCooldown: 3
+  dashForce: 10
 --- !u!135 &8391506328953425629
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -498,5 +452,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 30.78
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}

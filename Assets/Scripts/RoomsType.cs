@@ -23,11 +23,10 @@ public class RoomsType : MonoBehaviour
             {
                 if (i == rooms.Count-1 && spawnedBoss == false)
                 {
-                    Instantiate(Boss, rooms[i].transform.position, quaternion.identity);
+                    UIManager.Instance.bossIcon.SetActive(true);
+                    rooms[i].AddComponent<BossFight>();
+                    Instantiate(UIManager.Instance.bossIcon, rooms[i].transform.position, Quaternion.Euler(90f, 0f, 0f));
                     SpawnEnemies spawnEnemies = rooms[i].GetComponent<SpawnEnemies>();
-                    rooms[i].AddComponent<SpawnBoss>();
-                    SpawnBoss spawnBoss = rooms[i].GetComponent<SpawnBoss>();
-                    //spawnBoss.doors = spawnEnemies.doors;
                     Destroy(spawnEnemies);
                     rooms[i].name = "BossRoom";
                     spawnedBoss = true;

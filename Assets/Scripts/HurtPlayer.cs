@@ -14,22 +14,7 @@ public class HurtPlayer : MonoBehaviour
         DeadScreen.SetActive(false);
     }
     
-    /*void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R) && hearths.Length > 0)
-        {
-            Image hearth = hearths.Last();
-            Destroy(hearth);
-            
-            List<Image> tempHearths = hearths.ToList();
-            tempHearths.RemoveAt(tempHearths.Count - 1);
-            hearths = tempHearths.ToArray();
-        }
-        if(hearths.Length <=0){
-            DeadScreen.SetActive(true);
-            Time.timeScale = 0;
-        }
-    }*/
+   
     public void Hurt(){
         if(hearths.Length > 0){
             Image hearth = hearths.Last();
@@ -41,6 +26,7 @@ public class HurtPlayer : MonoBehaviour
         }
         if(hearths.Length <=0){
             DeadScreen.SetActive(true);
+            UIManager.Instance.pickedWeapon.SetActive(false);
             Time.timeScale = 0;
         }
     }

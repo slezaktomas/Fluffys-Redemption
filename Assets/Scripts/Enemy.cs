@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log(("K"));
         healthBar.fillAmount -= healthBar.fillAmount/Hp;
         Hp -= damage;
     }

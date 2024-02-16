@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public Rigidbody rb;
+    public AudioSource movementSound;
 
     private Vector2 moveInput;
     private Animator anim;
@@ -17,6 +18,7 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        movementSound = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -31,32 +33,35 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-        /*{
-            Dash();
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            activeSpeed = moveSpeed;
-        }*/
     }
 
     void Inputs()
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
-        moveInput.y= Input.GetAxisRaw("Vertical");
+        moveInput.y = Input.GetAxisRaw("Vertical");
 
         moveInput.Normalize();
     }
     void Move()
     {
         rb.velocity = new Vector3(moveInput.x * activeSpeed, rb.velocity.y, moveInput.y * activeSpeed);
-    }
-    /*void Dash()
-    {
-        rb.velocity = new Vector2(moveDirection.x * activeSpeed, moveDirection.y * activeSpeed)*dashValue;
-    }*/
 
-    private void Animate(){
+        
+        if (moveInput.magnitude > 0)
+        {
+            if (!movementSound.isPlaying)
+            {
+                movementSound.Play();
+            }
+        }
+        else
+        {
+            movementSound.Stop();
+        }
+    }
+
+    private void Animate()
+    {
         anim.SetFloat("MovementX", moveInput.x);
         anim.SetFloat("MovementY", moveInput.y);
         anim.SetFloat("Speed", moveInput.sqrMagnitude);

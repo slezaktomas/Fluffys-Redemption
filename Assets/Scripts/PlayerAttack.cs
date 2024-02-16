@@ -1,5 +1,6 @@
-using System.Collections;
+using System;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class PlayerAttack : MonoBehaviour
     public float moveDistance;
     public float normalMoveSpeed = 5f;
     public float attackMoveSpeed = 10f;
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
 
     private void Update()
     {
@@ -23,8 +30,13 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Attack();
+                anim.SetBool("Attack",true);
+                StartCoroutine(AttackAndMove());
                 timeBtwAttack = startTimeBtwAttack;
+            }
+            else
+            {
+                anim.SetBool("Attack",false);
             }
         }
         else
@@ -32,6 +44,9 @@ public class PlayerAttack : MonoBehaviour
             timeBtwAttack -= Time.deltaTime;
         }
     }
+
+    
+
 
     private IEnumerator AttackAndMove()
     {
@@ -47,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
     private void Attack()
     {
         Collider[] enemiesToDamage = Physics.OverlapSphere(attackPos.position, attackRange, EnemyLayerMask);
-        
+
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
             if (enemiesToDamage[i].GetComponent<Enemy>())
@@ -62,44 +77,9 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
-
-    /*private void MovePlayer()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            Vector3 targetPosition = hit.point;
-            targetPosition.y = transform.position.y;
-            Vector3 direction = (targetPosition - transform.position).normalized;
-            direction = EightDirections(direction);
-            targetPosition = transform.position + direction * moveDistance;
-            StartCoroutine(MovePlayerCoroutine(targetPosition));
-        }
-    }
-
-    private Vector3 EightDirections(Vector3 direction)
-    {
-        float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-        int octant = Mathf.RoundToInt(angle / 45.0f);
-        float snappedAngle = octant * 45.0f;
-        float correctedX = Mathf.Cos(snappedAngle * Mathf.Deg2Rad);
-        float correctedZ = Mathf.Sin(snappedAngle * Mathf.Deg2Rad);
-
-        return new Vector3(correctedX, 0, correctedZ);
-    }
-
-    private IEnumerator MovePlayerCoroutine(Vector3 targetPosition)
-    {
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, normalMoveSpeed * Time.deltaTime);
-            yield return null;
-        }
-    }*/
 }

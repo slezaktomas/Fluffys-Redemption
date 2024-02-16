@@ -15,6 +15,7 @@ public class LoadingManager : MonoBehaviour
     public bool isLoading;
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -22,6 +23,7 @@ public class LoadingManager : MonoBehaviour
         }
         loadingPanel.SetActive(false);
     }
+    
 
     public void LoadScene(int sceneId)
     {

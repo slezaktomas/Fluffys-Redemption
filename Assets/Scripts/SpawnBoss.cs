@@ -9,11 +9,6 @@ public class SpawnBoss : MonoBehaviour
     private bool hasSpawnedBoss = false;
     public static bool hasDefeatedBoss = false;
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         if (hasDefeatedBoss)
@@ -24,24 +19,25 @@ public class SpawnBoss : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !hasSpawnedBoss)
+        if (other.CompareTag("Player"))
         {
+            Debug.Log("ANO");
             UIManager.Instance.bossHealthBar?.SetActive(true);
             UIManager.Instance.easeHealthBar?.SetActive(true);
-            Invoke("CloseDoors", 0.1f);
+            Invoke("CloseDoors", 1f);
         }
     }
 
     void Spawn()
     {
         hasSpawnedBoss = true;
-        //GameObject boss = Instantiate(bossPrefab, gameObject.transform.position, Quaternion.identity);
     }
 
     void CloseDoors()
     {
+        
         for (int i = 0; i < doors.Count; i++)
         {
             doors[i].SetActive(true);
