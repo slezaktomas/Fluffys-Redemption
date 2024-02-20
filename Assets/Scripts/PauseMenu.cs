@@ -15,11 +15,13 @@ public class PauseMenu : MonoBehaviour
         {
             if (GameIsPaused) // pokud se hodnota GameIsPaused rovn� true, tak se zavol� metoda Resume
             {
+                UIManager.Instance.playerHearts.SetActive(true);
                 Resume();
             }
             else // pokud se hodnota GameIsPaused rovn� false, tak se zavol� metoda Pause
             {
                 Pause();
+                UIManager.Instance.playerHearts.SetActive(false);
             }
 
         }

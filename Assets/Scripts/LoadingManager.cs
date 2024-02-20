@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,19 +10,21 @@ public class LoadingManager : MonoBehaviour
     private int targetScene;
     public float minLoadTime;
     public GameObject loadingWheel;
-    public float WheelSpeed;
+    public float wheelSpeed;
+
     public bool isLoading;
+
     private void Awake()
     {
-
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        loadingPanel.SetActive(false);
+
+        if (loadingPanel != null)
+            loadingPanel.SetActive(false);
     }
-    
 
     public void LoadScene(int sceneId)
     {
@@ -34,24 +35,27 @@ public class LoadingManager : MonoBehaviour
     private IEnumerator LoadSceneRoutine()
     {
         isLoading = true;
-        loadingPanel.SetActive(true);
-        StartCoroutine(SpinWheelRoutine());
-        AsyncOperation op = SceneManager.LoadSceneAsync(targetScene);
-        float elapsedLoadTime = 0f;
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true);
 
+        StartCoroutine(SpinWheelRoutine());
+
+        AsyncOperation op = SceneManager.LoadSceneAsync(targetScene);
         while (!op.isDone)
         {
-            elapsedLoadTime += Time.deltaTime;
-            yield return null; 
+            yield return null;
         }
-
+        
+        float elapsedLoadTime = 0f;
         while (elapsedLoadTime < minLoadTime)
         {
             elapsedLoadTime += Time.deltaTime;
             yield return null;
         }
+
+        if (loadingPanel != null)
+            loadingPanel.SetActive(false);
         
-        loadingPanel.SetActive(false);
         isLoading = false;
     }
 
@@ -59,8 +63,10 @@ public class LoadingManager : MonoBehaviour
     {
         while (isLoading)
         {
-           loadingWheel.transform.Rotate(0,0, -WheelSpeed);
-           yield return null;
+            if (loadingWheel != null)
+                loadingWheel.transform.Rotate(0, 0, -wheelSpeed);
+
+            yield return null;
         }
     }
 }

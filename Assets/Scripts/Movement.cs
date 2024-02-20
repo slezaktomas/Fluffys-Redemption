@@ -59,7 +59,8 @@ public class Movement : MonoBehaviour
             movementSound.Stop();
         }
     }
-
+    
+    //Nastavení parametrů animací
     private void Animate()
     {
         anim.SetFloat("MovementX", moveInput.x);

@@ -50,7 +50,7 @@ public class Boss : MonoBehaviour
         
         if (Hp >= 40)
         {
-            FirstStage();
+            ThirdStage();
         }
         if (Hp >= 20 && Hp < 40)
         {
@@ -173,9 +173,12 @@ public class Boss : MonoBehaviour
                 float randomZ = UnityEngine.Random.Range(minBounds.z, maxBounds.z);
                 Vector3 randomPosition = new Vector3(randomX, 1f, randomZ);
                 GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
-            }  
+            }
         }
+        
+        currentAngle += 30f;
     }
+
     
     public void Shoot()
     {

@@ -12,7 +12,8 @@ public class UIManager : MonoBehaviour
      public GameObject pickedWeapon;
      //public GameObject bossPrefab;
      public GameObject bossIcon;
-     [SerializeField] private GameObject playerUi;
+     public GameObject playerUi;
+     public GameObject playerHearts;
      public static UIManager Instance { get; private set; }
      private void Awake() 
      { 

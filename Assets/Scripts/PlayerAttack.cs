@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using System.Collections;
 
@@ -8,15 +7,19 @@ public class PlayerAttack : MonoBehaviour
     public float startTimeBtwAttack;
     public Transform attackPos;
     public LayerMask EnemyLayerMask;
-    public float attackRange;
+    private float attackRange;
     public float moveDistance;
     public float normalMoveSpeed = 5f;
     public float attackMoveSpeed = 10f;
     private Animator anim;
+    public Light light;
+    public string name;
+    public static PlayerAttack Instance { get; private set; }
 
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        Instance = this;
     }
 
     private void Update()
@@ -28,15 +31,26 @@ public class PlayerAttack : MonoBehaviour
     {
         if (timeBtwAttack <= 0)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) )
             {
-                anim.SetBool("Attack",true);
+                Debug.Log(name);
+                
+                if (name.Trim() == "RosyGazeblade")
+                {
+                    anim.SetBool("Sword", true);
+                }
+                if (name == "Fluffkiri")
+                {
+                    anim.SetBool("Katana", true);
+                }
+                
                 StartCoroutine(AttackAndMove());
                 timeBtwAttack = startTimeBtwAttack;
             }
             else
             {
-                anim.SetBool("Attack",false);
+                anim.SetBool("Katana", false);
+                anim.SetBool("Sword", false);
             }
         }
         else
@@ -45,16 +59,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    
-
-
     private IEnumerator AttackAndMove()
     {
         float originalMoveSpeed = normalMoveSpeed;
         normalMoveSpeed = attackMoveSpeed;
 
         Attack();
-        //MovePlayer();
         yield return new WaitForSeconds(startTimeBtwAttack);
         normalMoveSpeed = originalMoveSpeed;
     }
@@ -67,7 +77,6 @@ public class PlayerAttack : MonoBehaviour
         {
             if (enemiesToDamage[i].GetComponent<Enemy>())
             {
-                Debug.Log("We hit " + enemiesToDamage[i].name);
                 enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(Player.Damage);
             }
             if (enemiesToDamage[i].GetComponent<Boss>())
@@ -75,6 +84,17 @@ public class PlayerAttack : MonoBehaviour
                 enemiesToDamage[i].GetComponent<Boss>().TakeDamage(Player.Damage);
             }
         }
+    }
+
+    public void SetRanges(float newAttackRange, float newLightRange)
+    {
+        attackRange = newAttackRange;
+        light.spotAngle = newLightRange;
+    }
+    public void SetName(string Name)
+    {
+        
+        name = Name;
     }
 
     private void OnDrawGizmosSelected()
