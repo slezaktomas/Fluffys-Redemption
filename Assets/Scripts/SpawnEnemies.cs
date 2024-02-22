@@ -12,12 +12,20 @@ public class SpawnEnemies : MonoBehaviour
     [SerializeField] private GameObject enemyContainer;
     public List<GameObject> enemies = new List<GameObject>();
     private bool hasSpawnedEnemies = false;
+    private bool roomCleared = false;
+    private bool roomClearedIncremented = false;
     private void Update()
     {
         // Podmínka pro otevření dveří po zabití všech nepřátel
         if (enemies.Count <= 0 && hasSpawnedEnemies)
         {
             Invoke("OpenDoors", 1);
+        }
+
+        if (roomCleared && !roomClearedIncremented)
+        {
+            UIManager.Instance.roomsCleared += 1;
+            roomClearedIncremented = true;
         }
     }
 
@@ -90,5 +98,8 @@ public class SpawnEnemies : MonoBehaviour
         {
             doors[i].SetActive(false);
         }
+
+        roomCleared = true;
+        
     }
 }

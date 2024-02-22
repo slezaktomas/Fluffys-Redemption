@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235272c1bf0a14179ab1865ab8f916b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 5
+  Hp: 1
   Damage: 0
   healthBar: {fileID: 669745097689139820}
   spawnEnemies: {fileID: 0}

@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     public int weaponDamage;
     public bool weaponPickedUp = false;
     public static Weapon Instance { get; private set; }
-
+ 
     private void Awake() 
     { 
         if (Instance != null && Instance != this) 

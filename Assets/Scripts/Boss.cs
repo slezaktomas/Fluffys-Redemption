@@ -28,8 +28,8 @@ public class Boss : MonoBehaviour
 
     private void Start()
     {
-        healthBar = UIManager.Instance.bossHealthBar?.GetComponent<Image>();
-        easeBar = UIManager.Instance.easeHealthBar?.GetComponent<Image>();
+        healthBar = UIManager2.Instance.bossHealthBar?.GetComponent<Image>();
+        easeBar = UIManager2.Instance.easeHealthBar?.GetComponent<Image>();
         
         for (int i = 0; i < bulletPoolSize; i++)
         {
@@ -45,12 +45,11 @@ public class Boss : MonoBehaviour
         {
             Destroy(gameObject);
             SpawnBoss.hasDefeatedBoss = true;
-            Debug.Log("Boss has been defeated!");
         }
         
         if (Hp >= 40)
         {
-            ThirdStage();
+            FirstStage();
         }
         if (Hp >= 20 && Hp < 40)
         {
@@ -81,7 +80,6 @@ public class Boss : MonoBehaviour
         if (player != null)
         {
             distance = Vector3.Distance(transform.position, player.position);
-            Debug.Log(distance);
             if (distance >= detectionRange)
             {
                 isAlerted = true;

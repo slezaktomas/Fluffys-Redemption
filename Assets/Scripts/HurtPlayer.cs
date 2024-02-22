@@ -31,7 +31,10 @@ public class HurtPlayer : MonoBehaviour
         if (hearts.Length <= 0)
         {
             deadScreen.SetActive(true);
-            UIManager.Instance.pickedWeapon.SetActive(false);
+            if (UIManager.Instance)
+            {
+                UIManager.Instance.pickedWeapon.SetActive(false);
+            }
             Time.timeScale = 0;
         }
     }
